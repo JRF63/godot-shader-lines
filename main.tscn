@@ -1,0 +1,48 @@
+[gd_scene load_steps=10 format=3 uid="uid://me1ucs8h7jvs"]
+
+[ext_resource type="Shader" path="res://grid.gdshader" id="1_6kc6k"]
+[ext_resource type="Script" path="res://main.gd" id="1_jouak"]
+[ext_resource type="Script" path="res://main_camera.gd" id="1_llsv1"]
+[ext_resource type="Script" path="res://noise_generator.gd" id="3_0pos5"]
+[ext_resource type="Script" path="res://grid.gd" id="3_ltg6w"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rvetx"]
+shader = ExtResource("1_6kc6k")
+shader_parameter/grid_color = null
+shader_parameter/line_width_cs = null
+shader_parameter/cell_width_ws = null
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_56llv"]
+size = Vector2(30000, 30000)
+
+[sub_resource type="Gradient" id="Gradient_xpo10"]
+interpolation_mode = 2
+interpolation_color_space = 2
+colors = PackedColorArray(0, 0, 0.784314, 1, 1, 0.784314, 0, 1)
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_kkrqv"]
+seamless = true
+color_ramp = SubResource("Gradient_xpo10")
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_jouak")
+
+[node name="MainCamera" type="Camera2D" parent="."]
+script = ExtResource("1_llsv1")
+
+[node name="Grid" type="Sprite2D" parent="."]
+z_index = 2
+material = SubResource("ShaderMaterial_rvetx")
+texture = SubResource("PlaceholderTexture2D_56llv")
+script = ExtResource("3_ltg6w")
+cell_width = 20.0
+
+[node name="Noise" type="TextureRect" parent="."]
+offset_left = -15000.0
+offset_top = -15000.0
+offset_right = 15000.0
+offset_bottom = 15000.0
+texture = SubResource("NoiseTexture2D_kkrqv")
+expand_mode = 3
+stretch_mode = 1
+script = ExtResource("3_0pos5")
