@@ -2,7 +2,7 @@ extends Sprite2D
 
 @export var grid_color: Color = Color.BLACK
 @export var line_width: float = 1.0
-@export var cell_width: float = 250.0
+@export var cell_width: float = 20.0
 
 func _ready():
 	material.set_shader_parameter("grid_color", grid_color)

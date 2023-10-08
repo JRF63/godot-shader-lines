@@ -21,6 +21,8 @@ interpolation_color_space = 2
 colors = PackedColorArray(0, 0, 0.784314, 1, 1, 0.784314, 0, 1)
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_kkrqv"]
+width = 1024
+height = 1024
 seamless = true
 color_ramp = SubResource("Gradient_xpo10")
 
@@ -35,7 +37,6 @@ z_index = 2
 material = SubResource("ShaderMaterial_rvetx")
 texture = SubResource("PlaceholderTexture2D_56llv")
 script = ExtResource("3_ltg6w")
-cell_width = 20.0
 
 [node name="Noise" type="TextureRect" parent="."]
 offset_left = -15000.0

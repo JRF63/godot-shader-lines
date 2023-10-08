@@ -1,6 +1,6 @@
 extends Camera2D
 
-@export var zoom_speed: float = 1.0
+@export var zoom_speed: float = 0.25
 @export var zoom_duration: float = 0.2
 
 @export var min_zoom: float = 0.5
@@ -15,11 +15,11 @@ func _ready():
 	zoom = Vector2(zoom_level, zoom_level)
 		
 func zoom_in(amount: float):
-	zoom_level += amount
+	zoom_level += amount * zoom_level
 	var tween = get_tree().create_tween()
 	tween.tween_property(self, "zoom", Vector2(zoom_level, zoom_level), zoom_duration)
 	
 func drag_camera(raw_delta: Vector2):
-	var next_position = position + raw_delta * -0.5
+	var next_position = position + raw_delta * -2.0 / zoom_level
 	var tween = get_tree().create_tween()
 	tween.tween_property(self, "position", next_position, 0.1)
